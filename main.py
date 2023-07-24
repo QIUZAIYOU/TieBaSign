@@ -7,10 +7,11 @@ import copy
 import logging
 import random
 
-import smtplib
-from email.mime.text import MIMEText
 import urllib.parse
 import urllib.request
+import smtplib
+from email.mime.text import MIMEText
+
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -239,7 +240,10 @@ def main():
         logger.info("完成第" + str(n) + "个用户签到")
     send_email(favorites)
     logger.info("所有用户签到结束")
-    sc_send("Github｜TieBaSign｜所有用户签到结束")
+    try:
+        sc_send("Github｜TieBaSign｜所有用户签到结束")
+    except Exception as e:
+        logger.error(f"server酱发送失败:{e}")
 
 if __name__ == '__main__':
     main()
