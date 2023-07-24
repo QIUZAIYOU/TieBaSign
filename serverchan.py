@@ -2,8 +2,8 @@ import os
 import urllib.parse
 import urllib.request
 
-server_chen_key = os.environ['SERVERCHENKEY']
-def sc_send(text, desp='', key=server_chen_key):
+server_chan_key = os.environ['SERVERCHAN']
+def sc_send(text, desp='', key=server_chan_key):
     try:
         postdata = urllib.parse.urlencode({
             'text': text,
