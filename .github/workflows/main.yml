@@ -23,3 +23,5 @@ jobs:
           BDUSS: ${{ secrets.BDUSS }}
           SERVERCHENKEY: ${{ secrets.SERVERCHENKEY }}
         run: python main.py
+      - name: ServerChan
+        run: serverchan.py
