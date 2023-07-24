@@ -7,8 +7,6 @@ import copy
 import logging
 import random
 
-import urllib.parse
-import urllib.request
 import smtplib
 from email.mime.text import MIMEText
 
@@ -213,18 +211,6 @@ def send_email(sign_list):
     smtp.sendmail(FROM, TO, msg.as_string())
     smtp.quit()
 
-server_chen_key = ENV['SERVERCHENKEY']
-def sc_send(text, desp='', key = server_chen_key):
-    postdata = urllib.parse.urlencode({
-        'text': text,
-        'desp': desp
-    }).encode('utf-8')
-    url = f'https://sctapi.ftqq.com/{key}.send'
-    req = urllib.request.Request(url, data=postdata, method='POST')
-    with urllib.request.urlopen(req) as response:
-        result = response.read().decode('utf-8')
-    return result
-
 def main():
     if ('BDUSS' not in ENV):
         logger.error("未配置BDUSS")
@@ -240,10 +226,6 @@ def main():
         logger.info("完成第" + str(n) + "个用户签到")
     send_email(favorites)
     logger.info("所有用户签到结束")
-    try:
-        sc_send("Github｜TieBaSign｜所有用户签到结束")
-    except Exception as e:
-        logger.error(f"server酱发送失败:{e}")
 
 if __name__ == '__main__':
     main()
