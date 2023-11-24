@@ -166,11 +166,16 @@ def encodeData(data):
 
 def client_sign(bduss, tbs, fid, kw):
     # 客户端签到
-    logger.info("开始签到贴吧：" + kw)
     data = copy.copy(SIGN_DATA)
     data.update({BDUSS: bduss, FID: fid, KW: kw, TBS: tbs, TIMESTAMP: str(int(time.time()))})
     data = encodeData(data)
+    resMsg = ''
     res = s.post(url=SIGN_URL, data=data, timeout=5).json()
+    if res["error_code"] == "0":
+        resMsg = res["forum"][0]["window_conf"]["text"]
+    else:
+        resMsg = res["error_msg"]
+    logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
     return res
 
 def send_email(sign_list):
