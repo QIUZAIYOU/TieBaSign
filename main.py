@@ -175,7 +175,7 @@ def client_sign(bduss, tbs, fid, kw):
         resMsg = res["forum"][0]["window_conf"]["text"]
     else:
         resMsg = res["error_msg"]
-    logger.info(f"开始签到贴吧：{kw}({fid})丨{resMsg}")
+    logger.info(f"开始签到贴吧：{kw}丨{fid}丨{resMsg}")
     return res
 
 def send_email(sign_list):
