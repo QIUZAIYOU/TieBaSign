@@ -175,7 +175,7 @@ def client_sign(bduss, tbs, fid, kw):
         resMsg = res["forum"][0]["window_conf"]["text"]
     else:
         resMsg = res["error_msg"]
-    logger.info(f"开始签到贴吧：{kw}丨{resMsg}")
+    logger.info(f"开始签到贴吧：{kw}({fid})丨{resMsg}")
     return res
 
 def send_email(sign_list):
@@ -226,8 +226,11 @@ def main():
         tbs = get_tbs(i)
         favorites = get_favorite(i)
         for j in favorites:
-            time.sleep(random.randint(1,5))
-            client_sign(i, tbs, int(j["id"]), j["name"])
+            try:
+                time.sleep(random.randint(1,5))
+                client_sign(i, tbs, int(j["id"]), j["name"])
+            except ValueError:
+                logger.info(f"Error: The value of 'id' is not a valid integer. Value: {j['id']}")
         logger.info("完成第" + str(n) + "个用户签到")
     send_email(favorites)
     logger.info("所有用户签到结束")
