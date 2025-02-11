@@ -21,7 +21,7 @@ jobs:
       - name: 'Start Sign'
         env:
           BDUSS: ${{ secrets.BDUSS }}
-          SERVERCHAN: ${{ secrets.SERVERCHAN }}
+          MEOW: ${{ secrets.MEOW }}
         run: python main.py
-      - name: Meow
+      - name: MEOW
         run: meow.py
