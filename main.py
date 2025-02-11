@@ -232,7 +232,7 @@ def main():
             except ValueError:
                 logger.info(f"Error: The value of 'id' is not a valid integer. Value: {j['id']}")
         logger.info("完成第" + str(n+1) + "个用户签到")
-    send_email(favorites)
+    # send_email(favorites)
     logger.info("所有用户签到结束")
 
 if __name__ == '__main__':
