@@ -20,5 +20,5 @@ jobs:
         run: python -m pip install --upgrade requests
       - name: 'Start Meow'
         env:
-          MEOW: ${{ secrets.MEOW }}
+          MEOW_NAME: ${{ secrets.MEOW_NAME }}
         run: python meow.py
