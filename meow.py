@@ -16,4 +16,4 @@ def meow_send(title='', message=''):
     except (URLError, HTTPError) as e:
         result = f'Error occurred: {e}'
     return result
-  meow_send(title='Github｜TieBaSign', message='所有用户签到结束')
+meow_send(title='Github｜TieBaSign', message='所有用户签到结束')
